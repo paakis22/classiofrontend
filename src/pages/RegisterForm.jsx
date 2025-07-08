@@ -196,13 +196,149 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import { useNavigate, useLocation } from 'react-router-dom';
+// import axios from 'axios'; // Add this at the top if missing
+
+
+// function RegisterForm() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const [roleFromQuery, setRoleFromQuery] = useState("");
+
+//   // Extract role from URL query (?role=student)
+//   useEffect(() => {
+//     const params = new URLSearchParams(location.search);
+//     const role = params.get("role");
+//     if (role) setRoleFromQuery(role);
+//   }, [location]);
+
+//   const [formData, setFormData] = useState({
+//     fullName: '',
+//     emailAddress: '',
+//     password: '',
+//     gender: '',
+//     role: '',
+//   });
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prevData) => ({
+//       ...prevData,
+//       [name]: value,
+//     }));
+//   };
+
+//    // handle role change 
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   const role = roleFromQuery.toLowerCase();
+
+//   try {
+//     const payload = {
+//       name: formData.fullName,
+//       email: formData.emailAddress,
+//       password: formData.password,
+//       gender: formData.gender,
+//       role: role,
+//     };
+
+//     const res = await axios.post('http://localhost:5000/api/auth/register', payload); // ✅ send to backend
+
+//     alert(res.data.message || `Registration successful as ${role}`);
+//     navigate('/login');
+//   } catch (err) {
+//     console.error('Registration error:', err);
+//     alert(err.response?.data?.error || 'Registration failed');
+//   }
+// };
+
+//   return (
+//     <div className="min-h-screen flex flex-col justify-between bg-gray-100 ">
+//       <div className="flex-grow flex items-center justify-center p-4">
+//         <div className="bg-gray-300 p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+//           <h2 className="text-3xl font-semibold mb-8 text-gray-800">
+//             Register as {roleFromQuery || 'User'}
+//           </h2>
+
+//           <form onSubmit={handleSubmit}>
+//             {[
+//               { label: 'Full Name', name: 'fullName', type: 'text' },
+//               { label: 'Email Address', name: 'emailAddress', type: 'email' },
+//               { label: 'Password', name: 'password', type: 'password' },
+//               { label: 'Gender', name: 'gender', type: 'text' },
+//             ].map(({ label, name, type }) => (
+//               <div className="flex items-center mb-6" key={name}>
+//                 <label htmlFor={name} className="text-lg text-gray-700 w-1/3 text-left mr-4">
+//                   {label} :
+//                 </label>
+//                 <input
+//                   type={type}
+//                   id={name}
+//                   name={name}
+//                   value={formData[name]}
+//                   onChange={handleChange}
+//                   className="flex-1 p-3 border border-gray-300 rounded-md text-gray-900  bg-white"
+//                   required
+//                 />
+//               </div>
+//             ))}
+
+//             <button
+//               type="button"
+//               className="mt-4 px-6 py-2   bg-[#053F5C]  text-white rounded-md text-lg font-medium hover:bg-[#E99858]"
+//             >
+//               Register
+//             </button>
+
+               
+//            <button
+//            type="button"
+//           onClick={() => navigate('/login')}
+//            className="px-6 py-2  bg-[#053F5C] text-white rounded-md text-lg font-medium hover:bg-[#E99858]"
+//        >
+//         Login
+//         </button>
+
+//           </form>
+//         </div>
+//       </div>
+
+//       {/* Footer is fixed at bottom */}
+//       {/* <Footer /> */}
+//     </div>
+//   );
+// }
+
+// export default RegisterForm;
+
+
+
+
+
+
+
+  //   if (role === 'student') {
+  //     navigate('/student/dashboard');
+  //   } else if (role === 'teacher') {
+  //     navigate('/payment');
+  //   } else {
+  //     alert('Invalid role in URL.');
+  //   }
+  // };
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Add this at the top if missing
 
 
 function RegisterForm() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();   
   const location = useLocation();
   const [roleFromQuery, setRoleFromQuery] = useState("");
 
@@ -287,33 +423,29 @@ const handleSubmit = async (e) => {
 
             <button
               type="submit"
-              className="mt-6 px-8 py-3  bg-[#BD74CF]  text-white rounded-md text-lg font-medium hover:bg-pink-300"
+              className="mt-6 px-8 py-3  bg-[#053F5C]  text-white rounded-md text-lg font-medium hover:bg-pink-300"
             >
-              Submit
+             Register
             </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Footer is fixed at bottom */}
-      {/* <Footer /> */}
-    </div>
-  );
-}
-
-export default RegisterForm;
+       
 
 
+               {/* 👉 Add this below Register button */}
+  <div className="mt-6 text-sm text-gray-700">
+    Already have an account?{' '}
+    <span
+      onClick={() => navigate('/login')}
+      className="text-blue-700 underline cursor-pointer hover:text-blue-900"
+    >
+      Login
+    </span>
+  </div>
+</form>
+ </div>
+      </div>  
+          </div>
+            );
+          }
 
-
-
-
-
-  //   if (role === 'student') {
-  //     navigate('/student/dashboard');
-  //   } else if (role === 'teacher') {
-  //     navigate('/payment');
-  //   } else {
-  //     alert('Invalid role in URL.');
-  //   }
-  // };
+      export default RegisterForm;
+      

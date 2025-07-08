@@ -310,7 +310,7 @@ const StripePaymentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded shadow space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded shadow space-y-8">
       <h2 className="text-xl font-semibold text-center">Stripe Payment</h2>
       {['name', 'amount', 'subject'].map((field) => (
         <div key={field}>
@@ -338,7 +338,7 @@ const StripePaymentForm = () => {
       <button
         type="submit"
         disabled={!stripe || loading}
-        className="w-full bg-[#98809E] text-white py-2 rounded hover:bg-green-700"
+        className="w-full bg-[#053F5C] text-white py-2 rounded hover:bg-[#E99858]"
       >
         {loading ? 'Processing...' : 'Pay'}
       </button>

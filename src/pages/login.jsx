@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
 
       const role = data.user.role;
       if (role === 'admin') navigate('/admin-dashboard');
-      else if (role === 'teacher') navigate('/teacher/dashboard');
+      else if (role === 'teacher') navigate('/create-profile');
       else if (role === 'student') navigate('/courses/:subject');
       else navigate('/');
     } catch (err) {
@@ -45,6 +45,76 @@ const handleSubmit = async (e) => {
       );
     }
   };
+
+
+//           const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   setError('');
+//   setSuccess('');
+
+//   try {
+//     const res = await axios.post('http://localhost:5000/api/auth/login', formData, {
+//       headers: { 'Content-Type': 'application/json' }
+//     });
+
+//     const data = res.data;
+//     const token = data.token;
+//     const role = data.user.role;
+
+//     // Store in localStorage
+//     localStorage.setItem('token', token);
+//     localStorage.setItem('role', role);
+
+//     setSuccess('Login successful!');
+
+//     // 🔁 REDIRECT BASED ON ROLE
+//     if (role === 'admin') {
+//       navigate('/admin-dashboard');
+//     }
+
+//     else if (role === 'teacher') {
+//       try {
+//         const profileRes = await axios.get(`http://localhost:5000/api/teachers/me`, {
+//           headers: { Authorization: `Bearer ${token}` }
+//         });
+
+//         if (profileRes.data && profileRes.data.name) {
+//           navigate('/teacher-dashboard');
+//         } else {
+//           navigate('/create-profile');
+//         }
+//       } catch (err) {
+//         navigate('/create-profile'); // fallback
+//       }
+//     }
+
+//     else if (role === 'student') {
+//       try {
+//         const profileRes = await axios.get(`http://localhost:5000/api/students/me`, {
+//           headers: { Authorization: `Bearer ${token}` }
+//         });
+
+//         if (profileRes.data && profileRes.data.name) {
+//           navigate('/student-dashboard');
+//         } else {
+//           navigate('/student-profile');
+//         }
+//       } catch (err) {
+//         navigate('/student-profile'); // fallback
+//       }
+//     }
+
+//     else {
+//       navigate('/');
+//     }
+
+//   } catch (err) {
+//     console.error('Login error:', err);
+//     setError(err.response?.data?.error || 'Something went wrong. Please try again.');
+//   }
+// };
+
+
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
@@ -82,10 +152,10 @@ const handleSubmit = async (e) => {
           </div>
 
           <button
-            type="submit"
-            className="w-full bg-[#A775B3]  text-white py-2 rounded hover:bg-[#0e0b2a]"
+            type="login"
+            className="w-full bg-[#053F5C] text-white py-2 px-6 rounded hover:bg-[#E99858]"
           >
-            Submit
+            login
           </button>
         </form>
       </div>
@@ -96,3 +166,6 @@ const handleSubmit = async (e) => {
 };
 
 export default Login;
+
+
+

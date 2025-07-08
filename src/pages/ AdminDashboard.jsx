@@ -33,7 +33,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#98809E] text-white p-6 space-y-6">
+      <aside className="w-64 bg-[#053F5C]  text-white p-6 space-y-6">
         <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
         <ul className="space-y-4 text-sm font-medium">
           <li

@@ -32,7 +32,7 @@ import axios from 'axios';
     <div className="min-h-screen flex flex-col bg-white">
       
       {/* Navbar */}
-      <nav className="bg-[#98809E]  text-white flex justify-center gap-6 py-4 text-sm md:text-base font-medium flex-wrap relative">
+      <nav className="bg-[#224D62]  text-white flex justify-center gap-6 py-4 text-sm md:text-base font-medium flex-wrap relative">
         <button onClick={() => navigate('/create-profile')} className="hover:underline">
           profile
         </button>
@@ -69,7 +69,7 @@ import axios from 'axios';
 
       {/* Join Button */}
       <div className="py-4 text-center">
-        <button className="bg-[#A775B3]  text-white px-6 py-2 rounded hover:bg-[#0e0b2a]">
+        <button className="bg-[#053F5C]   text-white px-6 py-2 rounded hover:bg-[#0e0b2a]">
           Join
         </button>
       </div>

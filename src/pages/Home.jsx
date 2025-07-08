@@ -1266,7 +1266,7 @@ const Home = () => {
 
                  <button
             onClick={() => setShowRegisterOptions(!showRegisterOptions)}
-            className="bg-[#E99858] hover:bg-[#053F5C] transition-all px-6 py-2 rounded-full flex items-center gap-2 font-semibold"
+            className="bg-[#053F5C] hover:bg-[#E99858] transition-all px-6 py-2 rounded-full  flex items-center gap-2 font-semibold"
           > 
              Get Started <ArrowRight size={19} /> 
          </button>  

@@ -20,9 +20,10 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8 text-gray-700 font-medium ">
-          <Link to="/" className="text-blue-900 transition duration-300">Home</Link>
-          <Link to="/service" className="text-blue-900 transition duration-300">service</Link>
-          <Link to="/contact" className="text-blue-900 transition duration-300">contact</Link>
+          <Link to="/" className="text-[#053F5C]  transition duration-300">Home</Link>
+          
+          <Link to="/#service" className="text-[#053F5C]  transition duration-300">service</Link>
+          <Link to="/#contact" className="text-[#053F5C]  transition duration-300">contact</Link>
         </div>
 
         {/* Login Button */}

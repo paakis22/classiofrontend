@@ -30,7 +30,9 @@ import StudentProfileView from "./pages/StudentProfileView";
 import Class from './pages/Class.jsx';
 import JoinedClasses from './pages/JoinedClasses.jsx';
 import Classmanagment from './pages/ Classmanagment.jsx';
-
+import StudentClassview from './pages/StudentClassview.jsx';
+import Module from './pages/Modules.jsx';
+// import AdminClassView from './pages/AdminClassView.jsx';
 // import StudentRegister from './pages/StudentRegister';
 // import TeacherRegister from './pages/TeacherRegister';
 
@@ -86,11 +88,13 @@ function App() {
              />
              <Route path="/courses/:subject" element={<Courses />} />
              <Route path="/student/profile/view" element={<StudentProfileView />} />
-             <Route path='Class' element={<Class/>}/>
-             <Route path="/student/classes" element={<JoinedClasses />} />
+             <Route path='Class' element ={<Class/>}/>
+             <Route path="/student/Classes" element={<JoinedClasses />} />
             <Route path="/class-management" element={<Classmanagment />} />
+            <Route path="/Modules" element={<Module />} />
+            <Route path="/student-class-view" element={<StudentClassview />} />
 
-
+            {/* <Route path="/admin-class-view/:id" element={<AdminClassView />} /> */}
               {/* <Route path="/teacher-profile/:id" element={<TeacherProfileView />} /> */}
               {/* <Route path="/student/profile/view" element={<StudentProfileView />} /> */}
         
