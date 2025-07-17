@@ -140,7 +140,7 @@
 //     subject: '',
 //     currency: 'usd',
 //   });
-  
+
 //   const [message, setMessage] = useState('');
 //   const [loading, setLoading] = useState(false);
 
@@ -168,8 +168,8 @@
 //       } else if (result.paymentIntent.status === 'succeeded') {
 //         setMessage('✅ Payment successful!');
 
-      
-      
+
+
 //            setTimeout(() => {
 //           // 🔁 Role-based redirection
 //           if (role === 'teacher') {
@@ -245,14 +245,14 @@ const StripePaymentForm = () => {
   // const queryParams = new URLSearchParams(location.search);
   // const role = queryParams.get('role'); // 'student' or 'teacher'
 
-     // ...existing code...
+  // ...existing code...
   const queryParams = new URLSearchParams(location.search);
   let role = queryParams.get('role');
   if (!role) {
     role = localStorage.getItem('role');
   }
   console.log('Role after payment:', role); // Debug
-// ...existing code...
+  // ...existing code...
 
 
 
@@ -266,6 +266,7 @@ const StripePaymentForm = () => {
 
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+const token = localStorage.getItem('token');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -277,7 +278,13 @@ const StripePaymentForm = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post('http://localhost:5000/api/payment/create-payment-intent', form);
+      // const { data } = await axios.post('http://localhost:5000/api/payment/create-payment-intent', form);
+      const { data } = await axios.post('http://localhost:5000/api/payment/create-payment-intent', form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      });
 
       const result = await stripe.confirmCardPayment(data.clientSecret, {
         payment_method: {
@@ -293,9 +300,9 @@ const StripePaymentForm = () => {
 
         setTimeout(() => {
           if (role === 'student') {
-            navigate('/student/dashboard'); 
+            navigate('/student/dashboard');
           } else if (role === 'teacher') {
-            navigate('/student/dashboard'); 
+            navigate('/student/dashboard');
           } else {
             navigate('/'); // fallback
           }

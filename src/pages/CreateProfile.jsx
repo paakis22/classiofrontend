@@ -15,7 +15,7 @@ const CreateProfile = () => {
     subject: '',
   });
   const [resumeFile, setResumeFile] = useState(null);
-  const [imageFile, setImageFile] = useState(null); 
+  const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -48,13 +48,24 @@ const CreateProfile = () => {
     if (imageFile) uploadData.append('image', imageFile);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/teachers', uploadData);
-      alert('Profile Created Successfully'); 
+      const token = localStorage.getItem('token'); // ✅ Get token from localStorage
+
+      const res = await axios.post(
+        'http://localhost:5000/api/teachers',
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Required for file upload
+            Authorization: `Bearer ${token}`,      // ✅ Attach token here
+          },
+        }
+      );
+      alert('Profile Created Successfully');
 
 
-       
-       // ✅ Redirect to Teacher Dashboard
-         navigate('/teacher/dashboard');
+
+      // ✅ Redirect to Teacher Dashboard
+      navigate('/teacher/dashboard');
 
       setFormData({ name: '', email: '', address: '', gender: '', bio: '', subject: '' });
       setProfileImage(null);
