@@ -411,6 +411,9 @@ const TeacherApproval = () => {
 
       setMessage(res.data.message || `✅ Teacher ${action}ed successfully`);
       await fetchTeachers();
+
+    
+
     } catch (err) {
       console.error(`${action} error:`, err);
       if (err.response?.status === 403) {

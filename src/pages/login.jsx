@@ -122,6 +122,50 @@ const Login = () => {
   };
 
 
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   setError('');
+//   setSuccess('');
+
+//   try {
+//     const res = await axios.post('http://localhost:5000/api/auth/login', formData, {
+//       headers: { 'Content-Type': 'application/json' }
+//     });
+
+//     const { token, user } = res.data;
+
+//     setSuccess('Login successful!');
+//     localStorage.setItem('token', token);
+//     localStorage.setItem('role', user.role);
+//     localStorage.setItem('userId', user.id);
+
+//     if (user.role === 'admin') {
+//       navigate('/admin-dashboard');
+
+//     } else if (user.role === 'teacher') {
+//       if (user.hasPaid) {
+//         navigate('/teacher/dashboard');
+//       } else {
+//         const profile = user.profile || 'create-profile'; // if profile is inside user, else fallback
+
+//         navigate('/create-profile');
+//       }
+
+//     } else if (user.role === 'student') {
+//   if (user.hasPaid) {
+//     navigate('/student/dashboard');
+//   } else {
+//     const subject = user.subject || 'default-subject';  // if subject is inside user, else fallback
+//     navigate(`/courses/${subject}`);
+//   }
+// }
+
+//   } catch (err) {
+//     setError(
+//       err.response?.data?.error || 'Something went wrong. Please try again.'
+//     );
+//   }
+// };
 const handleSubmit = async (e) => {
   e.preventDefault();
   setError('');
@@ -137,7 +181,11 @@ const handleSubmit = async (e) => {
     setSuccess('Login successful!');
     localStorage.setItem('token', token);
     localStorage.setItem('role', user.role);
-    localStorage.setItem('userId', user.id);
+    localStorage.setItem('userId', user._id || user.id); // ensure both work
+
+    // ✅ Check if payment was intended before login
+    const pendingTeacherId = localStorage.getItem('pendingTeacherId');
+    const pendingRole = localStorage.getItem('pendingRole');
 
     if (user.role === 'admin') {
       navigate('/admin-dashboard');
@@ -150,13 +198,23 @@ const handleSubmit = async (e) => {
       }
 
     } else if (user.role === 'student') {
-  if (user.hasPaid) {
-    navigate('/student/dashboard');
-  } else {
-    const subject = user.subject || 'default-subject';  // if subject is inside user, else fallback
-    navigate(`/courses/${subject}`);
-  }
-}
+      // 👉 If redirected for payment
+      if (pendingTeacherId && pendingRole === 'student') {
+        // Clear the temporary data
+        localStorage.removeItem('pendingTeacherId');
+        localStorage.removeItem('pendingRole');
+
+        // Redirect to payment page
+        return navigate(`/payment?tid=${pendingTeacherId}&role=student`);
+      }
+
+      if (user.hasPaid) {
+        navigate('/student/dashboard');
+      } else {
+        const subject = user.subject || 'default-subject';
+        navigate(`/courses/${subject}`);
+      }
+    }
 
   } catch (err) {
     setError(
@@ -210,5 +268,8 @@ const handleSubmit = async (e) => {
     </div>
   );
 };
+
+
+
 
 export default Login;

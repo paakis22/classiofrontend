@@ -17,7 +17,7 @@ import AdminDashboard from "./pages/ AdminDashboard.jsx";
 import UserManagement from './pages/UserManagement.jsx';
 import TeacherApproval from './pages/TeacherApproval.jsx'; 
 import PaymentList from './pages/PaymentList.jsx';
-// import TeacherProfileView from './pages/TeacherProfileView.jsx';
+import TeacherProfileView from './pages/TeacherProfileView.jsx';
 import TeacherListAdmin from './pages/TeacherListAdmin.jsx';
 import PaymentForm from './pages/PaymentForm.jsx';
 // import StripePaymentForm from './pages/RegisterForm.jsx';
@@ -25,6 +25,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import StudentProfile from './pages/StudentProfile.jsx';
 import StudentProfileManagement from './pages/StudentProfileManagement.jsx';
+import StudentShedule from './pages/studentShedule.jsx';
 import Courses from './pages/Courses';
 import StudentProfileView from "./pages/StudentProfileView";
 import Class from './pages/Class.jsx';
@@ -32,6 +33,10 @@ import JoinedClasses from './pages/JoinedClasses.jsx';
 import Classmanagment from './pages/ Classmanagment.jsx';
 import StudentClassview from './pages/StudentClassview.jsx';
 import Module from './pages/Modules.jsx';
+import ApprovalWait from './pages/ApprovalWait.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import AdminClassView from './pages/AdminClassView.jsx';
 // import StudentRegister from './pages/StudentRegister';
 // import TeacherRegister from './pages/TeacherRegister';
@@ -45,6 +50,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <ToastContainer />
      <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -63,7 +69,7 @@ function App() {
             <Route path="/user-management" element={<UserManagement />} />
              <Route path="/teacher-approval" element={<TeacherApproval />} />
             <Route path="/payment-list" element={<PaymentList />} /> 
-            {/* <Route path="/teacher-profile/:id" element={<TeacherProfileView />} /> */}
+            <Route path="/teacher-profile/:id" element={<TeacherProfileView />} />
             <Route path="/teacher-list-admin" element={<TeacherListAdmin />} />
             <Route path="/payment-form" element={<PaymentForm />} />
            
@@ -86,15 +92,15 @@ function App() {
              path="/subject/:subject"
              element={<TeacherListFiltered viewMode="student" />} 
              />
-             <Route path="/courses/:subject" element={<Courses />} />
+             <Route path="/courses" element={<Courses />} />
              <Route path="/student/profile/view" element={<StudentProfileView />} />
              <Route path='Class' element ={<Class/>}/>
              <Route path="/student/Classes" element={<JoinedClasses />} />
             <Route path="/class-management" element={<Classmanagment />} />
             <Route path="/Modules" element={<Module />} />
             <Route path="/student-class-view" element={<StudentClassview />} />
-
-            {/* <Route path="/admin-class-view/:id" element={<AdminClassView />} /> */}
+            <Route path="/approval-wait" element={<ApprovalWait />} />
+        <Route path="/shedule" element={<StudentShedule />} />
               {/* <Route path="/teacher-profile/:id" element={<TeacherProfileView />} /> */}
               {/* <Route path="/student/profile/view" element={<StudentProfileView />} /> */}
         

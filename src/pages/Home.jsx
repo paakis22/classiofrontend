@@ -1270,7 +1270,12 @@ const Home = () => {
           > 
              Get Started <ArrowRight size={19} /> 
          </button>  
-
+  <button
+            onClick={() => navigate("/courses")}
+            className="bg-[#053F5C] hover:bg-[#E99858] transition-all px-6 py-2 rounded-full  flex items-center gap-2 font-semibold"
+          > 
+             Explore Courses <ArrowRight size={19} /> 
+         </button> 
             {showRegisterOptions && (
             <div className="absolute top-180 left-80 bg-white rounded-xl shadow-xl border text-gray-800 overflow-hidden z-50">
               <button

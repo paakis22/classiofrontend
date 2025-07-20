@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // for navigation
+import { toast } from 'react-toastify';
 
 
 
@@ -60,12 +61,10 @@ const CreateProfile = () => {
           },
         }
       );
-      alert('Profile Created Successfully');
+      // After successful POST to create teacher
+      navigate("/approval-wait"); // your custom waiting screen
+      toast.info("✅ Profile submitted. Wait for admin approval.");
 
-
-
-      // ✅ Redirect to Teacher Dashboard
-      navigate('/teacher/dashboard');
 
       setFormData({ name: '', email: '', address: '', gender: '', bio: '', subject: '' });
       setProfileImage(null);
